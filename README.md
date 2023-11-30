@@ -24,6 +24,15 @@ To compile the c++ file you need to run the `make` command.
 
 * like every linux command this will also give outputs.
 
+
+## Profiling (Without Multi-threading) Question 2
+- 1 min 43 seconds to generate 10 files of 1gb each
+- 15 seconds to generate 100 files of 10mb each
+- 43 seconds to generate directory through recursions
+
+## Profiling (With Multi-threading) Question 4
+- After Implementing Multi-threading time reduced significantly.
+
 ## List of References
 
 - I have also used `StackOverflow` for identifying my silly mistakes.
