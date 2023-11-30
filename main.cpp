@@ -189,17 +189,36 @@ public:
         }
     }
 
+    // void listDirectory(const string& path, const vector<string>& options) {
+    //     try {
+    //         for (const auto& entry : fs::directory_iterator(path)) {
+    //             cout << entry.path().filename();
+                
+    //             // Check for the presence of the option to display details (ls -l)
+    //             if (find(options.begin(), options.end(), "-l") != options.end()) {
+    //                 cout << " (" << fs::file_size(entry) << " bytes)";
+    //             }
+
+    //             cout << endl;
+    //         }
+    //     } catch (const exception& e) {
+    //         cout << "Error: " << e.what() << endl;
+    //     }
+    // }
     void listDirectory(const string& path, const vector<string>& options) {
         try {
             for (const auto& entry : fs::directory_iterator(path)) {
-                cout << entry.path().filename();
-                
-                // Check for the presence of the option to display details (ls -l)
-                if (find(options.begin(), options.end(), "-l") != options.end()) {
-                    cout << " (" << fs::file_size(entry) << " bytes)";
-                }
+                // Check for the presence of the option to display hidden entries (ls -a)
+                if (find(options.begin(), options.end(), "-a") != options.end() || entry.path().filename().string().find('.') != 0) {
+                    cout << entry.path().filename();
 
-                cout << endl;
+                    // Check for the presence of the option to display detailed information (ls -l)
+                    if (find(options.begin(), options.end(), "-l") != options.end()) {
+                        cout << " (" << fs::file_size(entry) << " bytes)";
+                    }
+
+                    cout << endl;
+                }
             }
         } catch (const exception& e) {
             cout << "Error: " << e.what() << endl;
